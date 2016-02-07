@@ -6,6 +6,7 @@ defmodule TestServer do
   plug :dispatch
 
   @port Application.get_env(:sendalot, Sendalot)[:test_server_port]
+  @host Application.get_env(:sendalot, Sendalot)[:test_server_host]
 
   post _ do
     sender = Map.new(conn.req_headers)["senderid"]
@@ -24,9 +25,8 @@ defmodule TestServer do
     Plug.Adapters.Cowboy.shutdown :test_server
   end
 
-  def port do
-    @port
-  end
+  def port, do: @port
+  def host, do: @host
   
   defp update_messages_for sender, message do
     store = Agent.get(:test_server, fn store -> store end)

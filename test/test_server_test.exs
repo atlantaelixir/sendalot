@@ -7,7 +7,7 @@ defmodule TestServerTest do
   end
 
   test "the test server is running" do
-    {:ok, response} = HTTPoison.post "localhost:#{TestServer.port}", "Give the dog a bone", %{"SenderID": "Paddywack"}
+    {:ok, response} = HTTPoison.post "#{TestServer.host}:#{TestServer.port}", "Give the dog a bone", %{"SenderID": "Paddywack"}
     assert response.body == "Message: Give the dog a bone from Paddywack"
   end
 
