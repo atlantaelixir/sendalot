@@ -1,0 +1,2 @@
+defmodule Sendalot do
+end
